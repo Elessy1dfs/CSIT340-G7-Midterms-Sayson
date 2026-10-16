@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Bio from "./components/Bio"; 
-import Repositories from "./components/Repositories";
+import Profile from "./components/Profile";
 import StatCard from "./components/StatCard";  
+import Repositories from "./components/Repositories";
+import Footer from "./components/footer";
 
 function App() {
   const [followers, setFollowers] = useState(0);
@@ -38,14 +40,21 @@ function App() {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#FAF3E1] text-[#222222]">
-   
-      <Navbar />
+      
 
-  
       <main className="flex-1 px-20 py-10">
-        <div className="grid gap-6 md:grid-cols-2">
-          <Bio followers={followers} onFollow={handleFollow} />
-          <StatCard followers={followers} rate={rate} onAddRate={handleAddRate} onReset={handleReset} />
+        <div className="grid gap-6 md:grid-cols-2 items-center">
+          <div>
+            <Bio />
+            <div className="mt-6">
+              <Profile 
+                onFollow={handleFollow} 
+                onAddRate={handleAddRate} 
+                onReset={handleReset} 
+              />
+            </div>
+          </div>
+          <StatCard followers={followers} rate={rate} />
         </div>
 
         <Repositories 
@@ -58,8 +67,7 @@ function App() {
         />
       </main>
 
-    
-    
+      
     </div>
   );
 }
